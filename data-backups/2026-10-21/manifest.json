@@ -1,0 +1,238 @@
+{
+  "formatVersion": 1,
+  "backupDate": "2026-10-21",
+  "capturedAt": "2026-10-21T10:53:49.523Z",
+  "sourceOrigin": "https://univest-blog.f20230280119222.chatgpt.site",
+  "backupType": "Logical reporting export; not a complete physical database or infrastructure backup",
+  "requestedHistoryRange": {
+    "from": "2017-01-01",
+    "to": "2026-10-21"
+  },
+  "requestedCostAndTimingRange": {
+    "from": "2026-04-25",
+    "to": "2026-10-21"
+  },
+  "coverage": {
+    "blogSnapshots": 44,
+    "blogVariationRows": 1081,
+    "blogFirstDate": "2026-09-08",
+    "blogLastDate": "2026-10-21",
+    "blogDates": [
+      "2026-09-08",
+      "2026-09-09",
+      "2026-09-10",
+      "2026-09-11",
+      "2026-09-12",
+      "2026-09-13",
+      "2026-09-14",
+      "2026-09-15",
+      "2026-09-16",
+      "2026-09-17",
+      "2026-09-18",
+      "2026-09-19",
+      "2026-09-20",
+      "2026-09-21",
+      "2026-09-22",
+      "2026-09-23",
+      "2026-09-24",
+      "2026-09-25",
+      "2026-09-26",
+      "2026-09-27",
+      "2026-09-28",
+      "2026-09-29",
+      "2026-09-30",
+      "2026-10-01",
+      "2026-10-02",
+      "2026-10-03",
+      "2026-10-04",
+      "2026-10-05",
+      "2026-10-06",
+      "2026-10-07",
+      "2026-10-08",
+      "2026-10-09",
+      "2026-10-10",
+      "2026-10-11",
+      "2026-10-12",
+      "2026-10-13",
+      "2026-10-14",
+      "2026-10-15",
+      "2026-10-16",
+      "2026-10-17",
+      "2026-10-18",
+      "2026-10-19",
+      "2026-10-20",
+      "2026-10-21"
+    ],
+    "missingBlogDatesSinceFirstSnapshot": [],
+    "d1BlogDateCount": 15,
+    "d1BlogDatesCovered": true,
+    "costSavedDates": 43,
+    "costDates": [
+      "2026-09-08",
+      "2026-09-09",
+      "2026-09-10",
+      "2026-09-11",
+      "2026-09-12",
+      "2026-09-13",
+      "2026-09-14",
+      "2026-09-15",
+      "2026-09-16",
+      "2026-09-17",
+      "2026-09-18",
+      "2026-09-19",
+      "2026-09-20",
+      "2026-09-21",
+      "2026-09-22",
+      "2026-09-23",
+      "2026-09-24",
+      "2026-09-25",
+      "2026-09-26",
+      "2026-09-27",
+      "2026-09-28",
+      "2026-09-29",
+      "2026-09-30",
+      "2026-10-01",
+      "2026-10-02",
+      "2026-10-03",
+      "2026-10-04",
+      "2026-10-05",
+      "2026-10-06",
+      "2026-10-07",
+      "2026-10-08",
+      "2026-10-09",
+      "2026-10-10",
+      "2026-10-11",
+      "2026-10-12",
+      "2026-10-13",
+      "2026-10-14",
+      "2026-10-15",
+      "2026-10-16",
+      "2026-10-17",
+      "2026-10-18",
+      "2026-10-19",
+      "2026-10-21"
+    ],
+    "missingCostDatesSinceFirstSavedDate": [
+      "2026-10-20"
+    ],
+    "timeSavedDates": [
+      "2026-10-06",
+      "2026-10-07",
+      "2026-10-08",
+      "2026-10-09",
+      "2026-10-10",
+      "2026-10-11",
+      "2026-10-12",
+      "2026-10-13",
+      "2026-10-14",
+      "2026-10-15",
+      "2026-10-16",
+      "2026-10-17",
+      "2026-10-18",
+      "2026-10-19",
+      "2026-10-20",
+      "2026-10-21"
+    ],
+    "creationTimingDates": [
+      "2026-10-06",
+      "2026-10-07",
+      "2026-10-08",
+      "2026-10-09",
+      "2026-10-12",
+      "2026-10-13",
+      "2026-10-14",
+      "2026-10-15",
+      "2026-10-16",
+      "2026-10-19",
+      "2026-10-20",
+      "2026-10-21"
+    ],
+    "efficiencySourceAvailability": {
+      "blogs": true,
+      "time": true,
+      "cost": true,
+      "creation": true
+    }
+  },
+  "qualityWarnings": [],
+  "sourceWarnings": [],
+  "exclusions": [
+    "API keys and credentials",
+    "Authentication/session/rate-limit tables",
+    "Runtime environment values",
+    "WordPress article bodies",
+    "Raw n8n executions/tables and source Google Sheets",
+    "Browser-local to-do items",
+    "Uncaptured or unavailable historical records"
+  ],
+  "caveats": [
+    "Today is a partial-day capture.",
+    "Blogs and timing use IST; Costs API billing dates use UTC.",
+    "Fresh/updated classification may be unavailable for older dates.",
+    "This is a manual point-in-time backup; no automatic future backup is configured.",
+    "Sources are read sequentially/in parallel and are not a transactionally consistent database snapshot.",
+    "Logical SQL reconstructs canonical report payloads, not byte-identical source rows."
+  ],
+  "files": [
+    {
+      "path": "analytics-history.json",
+      "bytes": 394911,
+      "sha256": "c22351bc599dc1fc77f5d3e68e841dec87f9bdf6298431d6a08b61407e76b91f"
+    },
+    {
+      "path": "cost-history.json",
+      "bytes": 248838,
+      "sha256": "cf04a642c13ff08d1deb861149fe95a6741f51e3f3b8a81130d3dc7c30b37424"
+    },
+    {
+      "path": "efficiency-history.json",
+      "bytes": 100607,
+      "sha256": "72f24dbdec9e7f3a6b5eb70f38d4b8d7adbdf2b7fb6c64f8be36dddfb0b86c6e"
+    },
+    {
+      "path": "blog-variations.csv",
+      "bytes": 117232,
+      "sha256": "e57b7d66e0f798163f03b28ec82d13b80fa0561f63f723239e6d6292e98bd6dc"
+    },
+    {
+      "path": "usage-by-model.csv",
+      "bytes": 17805,
+      "sha256": "586da351107fe1d2e916d6aa706a284fb27398455c0432cd9e2c9594bffa2d37"
+    },
+    {
+      "path": "costs-daily.csv",
+      "bytes": 3363,
+      "sha256": "f1392e0f5379e72a99ebac4ab7e5aa8da6b9fa619bba7d84c8a517ad3b45c53c"
+    },
+    {
+      "path": "cost-line-items.csv",
+      "bytes": 40172,
+      "sha256": "a472f5272867efe1f4d6f3b30968e09286dba5b7a30de6f3e7b31417f44c7511"
+    },
+    {
+      "path": "daily-efficiency.csv",
+      "bytes": 6491,
+      "sha256": "0ef881c634c3496be2f6e2debc024661da1288b7c898fde310b6e621c119cf96"
+    },
+    {
+      "path": "time-saved-by-category.csv",
+      "bytes": 7635,
+      "sha256": "b87b4c7b3e5a47c823476aa855d98d453ae1b0211e49fe1d92c4a22387765c69"
+    },
+    {
+      "path": "creation-time-by-category.csv",
+      "bytes": 1329,
+      "sha256": "e8ac54bcd6bd276c71cda2a060b58fa7e2e4c7ac47f1db26128eac18d7c0d4fd"
+    },
+    {
+      "path": "restore-reporting.sql",
+      "bytes": 418772,
+      "sha256": "65665c5656b01cd16a02217e19bced2d720d5761e0c0780544d6ddb42973af8b"
+    },
+    {
+      "path": "database-inventory.json",
+      "bytes": 6117,
+      "sha256": "677b954d595527f953081f39b1e8d7fd7dff8521044b2c4c030a8e85100d3fa2"
+    }
+  ]
+}

@@ -1,0 +1,5 @@
+# Preserve backup bytes exactly so SHA-256 checks also pass after cloning.
+data-backups/** -text
+data-backups/** whitespace=cr-at-eol
+scripts/backup-reporting-history.mjs text eol=lf
+scripts/verify-reporting-backup.mjs text eol=lf
