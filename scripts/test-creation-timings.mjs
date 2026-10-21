@@ -1,0 +1,15 @@
+import assert from 'node:assert/strict';
+import {extractCreationTimings} from './creation-timing-extractor.mjs';
+const begin=Date.parse('2026-10-07T10:00:00Z');
+const loop={name:'Article loop',type:'n8n-nodes-base.splitInBatches',parameters:{batchSize:1}};
+const create={name:'Create post',type:'n8n-nodes-base.httpRequest',parameters:{method:'POST',url:'https://univest.in/blogs-2/wp-json/wp/v2/posts'}};
+const wf={nodes:[loop,create],connections:{'Article loop':{main:[[],[{node:'Create post'}]]}}};
+const loopRuns=Array.from({length:20},(_,i)=>({startTime:begin+i*60000,executionTime:1,executionIndex:i*2,data:{main:[[],[{json:{}}]]}}));
+const createRuns=Array.from({length:20},(_,i)=>({startTime:begin+i*60000+29000,executionTime:1000,executionIndex:i*2+1,data:{main:[[{json:{id:i+1,type:'post',content:{rendered:'DO NOT EXPORT'}}}]]}}));
+const ex={startedAt:new Date(begin).toISOString(),data:{resultData:{runData:{'Article loop':loopRuns,'Create post':createRuns}}}};
+const m=extractCreationTimings(ex,wf,'SEO');assert.equal(m.samples.length,20);assert.equal(m.samples.reduce((s,a)=>s+a.seconds,0),600);assert.equal(m.samples[0].date,'2026-10-07');assert.ok(!JSON.stringify(m).includes('DO NOT EXPORT'));
+assert.equal(extractCreationTimings({...ex,data:{resultData:{runData:{'Article loop':[{...loopRuns[0],data:{main:[[],[{json:{}},{json:{}}]]}}],'Create post':[createRuns[0]]}}}},wf,'SEO').samples.length,0);
+const updated={...create,parameters:{...create.parameters,url:create.parameters.url+'/123'}};assert.equal(extractCreationTimings(ex,{...wf,nodes:[loop,updated]},'SEO').samples.length,0);
+const waited={...wf,nodes:[...wf.nodes,{name:'Wait',type:'n8n-nodes-base.wait'}]};assert.equal(extractCreationTimings({...ex,data:{resultData:{runData:{...ex.data.resultData.runData,Wait:[{startTime:begin+10000}]}}}},waited,'SEO').samples.length,19);
+const single={...ex,data:{resultData:{runData:{'Create post':[createRuns[0],createRuns[0]]}}}};assert.equal(extractCreationTimings(single,{nodes:[create],connections:{}},'SEO').samples.length,0);
+console.log('PASS: 20 looped articles, precise durations, ambiguous batches, update URLs, explicit waits, duplicate outputs, and content minimization.');

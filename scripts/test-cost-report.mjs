@@ -1,0 +1,22 @@
+import assert from 'node:assert/strict';
+import {readFileSync} from 'node:fs';
+import ts from 'typescript';
+const code=ts.transpileModule(readFileSync('lib/cost-report.ts','utf8'),{compilerOptions:{target:ts.ScriptTarget.ES2022,module:ts.ModuleKind.ES2022}}).outputText;
+const {combineCostReports,costExcel,dateList}=await import('data:text/javascript;base64,'+Buffer.from(code).toString('base64'));
+const report={scope:{name:'blog-news-automation'},period:{from:'2026-09-01',to:'2026-09-02'},generatedAt:'2026-09-02T12:00:00Z',actualBilledCosts:{status:'ready',dailyLineItems:[{date:'2026-09-01',currency:'usd',amount:1.2,lineItem:'gpt-test, input'},{date:'2026-09-01',currency:'usd',amount:0.3,lineItem:'web search tool calls'},{date:'2026-09-02',currency:'usd',amount:2,lineItem:'gpt-test, output'}]},usageByModel:{status:'ready'},dailyUsage:[{date:'2026-09-01',model:'gpt-test',source:'completions',batch:false,serviceTier:'default',metrics:{input_tokens:100,output_tokens:20,input_cached_tokens:30,num_model_requests:2}},{date:'2026-09-02',model:'gpt-test',source:'completions',batch:false,serviceTier:'default',metrics:{input_tokens:50,output_tokens:10,num_model_requests:1}}]};
+const d1=combineCostReports([report],'2026-09-01','2026-09-01');
+const d2=combineCostReports([report],'2026-09-02','2026-09-02');
+assert.equal(d1.actualBilledCosts.totalsByCurrency[0].amount,1.5);
+assert.equal(d1.dailyUsage.length,1);
+const combined=combineCostReports([d1,d2],'2026-09-01','2026-09-02');
+assert.equal(combined.actualBilledCosts.totalsByCurrency[0].amount,3.5);
+assert.equal(combined.dailyUsage.length,2);
+assert.equal(combineCostReports([],'2026-09-01','2026-09-01'),null);
+assert.equal(dateList('2026-08-30','2026-09-05').length,7);
+const xml=costExcel(combined);
+assert.match(xml,/Other charges/);assert.match(xml,/Actual cost \(USD\)/);assert.match(xml,/input_cache_write_tokens/);assert.match(xml,/>180<\/Data>/); // 150 input + 30 output, cached tokens not added again
+assert.equal((xml.match(/<Worksheet ss:Name=/g)||[]).length,3);
+assert.ok(!xml.includes('undefined')&&!xml.includes('NaN'));
+const route=readFileSync('app/api/openai/cost-analysis/route.ts','utf8');
+assert.ok(route.includes('if (!refresh) return jsonPrivate(await savedCostReport'));
+console.log('PASS: daily ranges, saved aggregation, no duplicate totals, Excel costs and token breakdowns, cache-only GET');
